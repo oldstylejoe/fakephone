@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f3758f8f58fdef43803eb9be1df0608, type: 3}
+  m_Name: PhotonServerSettings
+  m_EditorClassIdentifier: 
+  AppID: 72f5c175-2df4-4dcd-9690-48e5025d1655
+  VoiceAppID: 1688a2e1-c89e-4d57-a99d-6f5e10aacb97
+  ChatAppID: 3d1a1078-54bf-48ef-aaae-9f53f7ab2728
+  HostType: 1
+  PreferredRegion: 6
+  EnabledRegions: -1
+  Protocol: 0
+  ServerAddress: 127.0.0.1
+  ServerPort: 5055
+  VoiceServerPort: 5055
+  JoinLobby: 0
+  EnableLobbyStatistics: 0
+  PunLogging: 2
+  NetworkLogging: 5
+  RunInBackground: 1
+  RpcList:
+  - Chat
+  - DestroyRpc
+  - InstantiateRpc
+  - PickupItemInit
+  - PunPickup
+  - PunPickupSimple
+  - PunRespawn
+  - RequestForPickupItems
+  - RequestForPickupTimes
+  - ColorRpc
+  - DoJump
+  - Flash
+  - Marco
+  - Polo
+  - TaggedPlayer
+  - CallSignal
+  - SendCall
+  - SendText
+  - TextSignal
+  - HangupCall
+  - HangupSignal
+  - ReceiverHungUp
+  - StartTalking
+  - StopTalking
+  - StopRinging
+  - Ping
+  - PingBack
+  - PingRec
+  - TextSignalFeedback
+  DisableAutoOpenWizard: 1
