@@ -49,8 +49,11 @@ public class Receiver : Photon.PunBehaviour {
     private void Start()
     {
         answer.gameObject.SetActive(false);
-        hangup.gameObject.SetActive(false);
+        //hangup.gameObject.SetActive(false);
     }
+
+    #region deprecated_for_voicemessage
+    //-----------------------------------------all this was used for calling------------------
 
     //logic for the call handling.
     //not very robust for this controlled environment.
@@ -128,6 +131,34 @@ public class Receiver : Photon.PunBehaviour {
     {
         Debug.Log("Hanging up from the caller.");
         Hangup();
+    }
+
+    #endregion
+
+    /// <summary>
+    /// Answer the phone and play a message. hangup is not an option, so this is just a signal to play some audio
+    /// </summary>
+    /// <param name="messageID"></param>
+    [PunRPC]
+    public void AnswerMessage()
+    {
+        StartCoroutine(DoAnswerMessage());
+    }
+    private IEnumerator DoAnswerMessage()
+    {
+        answer.gameObject.SetActive(true);
+        bool answered = false;
+        answer.onClick.AddListener(() => { answered = true; });
+        AudioManager.instance.RingPhone();
+        yield return new WaitUntil(() => { return answered; });
+        AudioManager.instance.StopPhone();
+        answer.onClick.RemoveAllListeners();
+        answer.gameObject.SetActive(false);
+        talkingIcon.color = phoneActive;
+        yield return new WaitForSeconds(0.5f);
+        AudioManager.instance.PlayNextAudioMessage();
+        yield return new WaitForSeconds(AudioManager.instance.messageSource.clip.length + 0.1f);
+        talkingIcon.color = phoneInactive;
     }
 
     [PunRPC]

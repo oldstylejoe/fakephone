@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿///Joe Snider
+///9/18
+///Send calls/texts.
+/// hangup is deprecated, but kept around in case we want to call later - JS 11/2018.
+
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
@@ -8,7 +13,7 @@ public class Sender : Photon.PunBehaviour {
     
     [Header("Control the calling")]
     public Button call;
-    public Button hangup;
+    public Button hangup; 
     public Text callStatus;
 
     [Header("The message to send and check for feedback.")]
@@ -94,6 +99,13 @@ public class Sender : Photon.PunBehaviour {
     {
         rc.RPC("TextSignalFeedback", PhotonTargets.All, t, yes, no);
     }
+    /// <summary>
+    /// Just cycle through the recorded messages. May overlap if you're not careful.
+    /// </summary>
+    public void PlayNextMessage()
+    {
+        rc.RPC("AnswerMessage", PhotonTargets.Others);
+    }
 
     /// <summary>
     /// Enable the micropone. Basically push-to-talk.
@@ -132,9 +144,12 @@ public class Sender : Photon.PunBehaviour {
     [PunRPC]
     public void PingRec()
     {
-        stopWatch.Stop();
-        pingStatus.text = "Ping Back time: " + stopWatch.ElapsedMilliseconds + " ms";
-        UnityEngine.Debug.Log("Ping Back time: " + stopWatch.ElapsedMilliseconds + " ms");
+        if (stopWatch != null)
+        {
+            stopWatch.Stop();
+            pingStatus.text = "Ping Back time: " + stopWatch.ElapsedMilliseconds + " ms";
+            UnityEngine.Debug.Log("Ping Back time: " + stopWatch.ElapsedMilliseconds + " ms");
+        }
     }
 
 }

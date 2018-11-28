@@ -32,19 +32,19 @@ public class AutoText : MonoBehaviour {
             bool yes = false;
             bool no = false;
             string y = messages[n];
-            Debug.Log("automessage gh0 " + y);
+            //Debug.Log("automessage gh0 " + y);
             if (y.StartsWith("yes"))
             {
                 yes = true;
                 y = y.Remove(0, 4);
             }
-            Debug.Log("automessage gh1 " + y);
+            //Debug.Log("automessage gh1 " + y);
             if (y.StartsWith("no"))
             {
                 no = true;
                 y = y.Remove(0, 3);
             }
-            Debug.Log("automessage gh2 " + y);
+            //Debug.Log("automessage gh2 " + y);
             sc.SendText(y, yes, no);
             n = (n + 1) % messages.Count;
 

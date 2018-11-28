@@ -43,8 +43,9 @@ public class FakePhoneManager : Singleton<FakePhoneManager> {
     /// </summary>
     public void BeReceiver()
     {
-        //receiver always transmits so we can hear what is going on.
-        FindObjectOfType<ManageVoice>().StartTransmitting();
+        ////receiver always transmits so we can hear what is going on.
+        ///Changed to not do this. We will record with an AV
+        //FindObjectOfType<ManageVoice>().StartTransmitting();
         startupGroup.GetComponent<FocusCanvas>().RemoveFocus();
         receiverGroup.GetComponent<FocusCanvas>().GiveFocus();
         senderGroup.GetComponent<FocusCanvas>().RemoveFocus();
